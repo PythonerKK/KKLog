@@ -1,0 +1,2 @@
+# KKLog
+Developed with Flask
