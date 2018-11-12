@@ -1,0 +1,54 @@
+{% if categories %}
+<div class="card mb-3">
+
+    <div class="card-header">友情链接</div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                <a href="http://193.112.41.211:8000" target="blank">KK的博客</a>
+            </li>
+                        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                <a href="http://193.112.41.211:5000" target="blank">Sarah的笔记本</a>
+            </li>
+                        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                <a href="http://193.112.41.211:5000" target="blank">KK的INS</a>
+            </li>
+        </ul>
+
+
+
+
+    <div class="card-header">文章分类</div>
+    <ul class="list-group list-group-flush">
+        {% for category in categories %}
+            <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <a href="{{ url_for('blog.show_category',category_id=category.id) }}">{{ category.name }}</a>
+            <span class="badge badge-primary badge-pill">{{ category.posts|length }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<div class="card text-white bg-primary mb-3" style="max-width: 25rem;">
+  <div class="card-header">每日精选</div>
+  <div class="card-body">
+    <h5 class="card-title">心灵鸡汤</h5>
+    <p class="card-text">不解释的，才叫从容。不执着的，才叫看破。不完美的，才叫人生。用心甘情愿的态度，过随遇而安的生活，你在，世界就在</p>
+  </div>
+</div>
+<div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
+  <div class="card-header">每日精选</div>
+  <div class="card-body">
+    <h5 class="card-title">每日佳句</h5>
+    <p class="card-text">你大可不必担心自己努力了，会不会不优秀。你要担心的是：比你优秀的人还比你更努力。</p>
+  </div>
+</div>
+<div class="card text-white bg-success mb-3" style="max-width: 25rem;">
+  <div class="card-header">每日精选</div>
+  <div class="card-body">
+    <h5 class="card-title">佳句</h5>
+    <p class="card-text">如果你觉得自己，整天累得跟狗一样。你真是误会大了，狗根本没有你这么累。人生就跟在跑步机上似的，你已经累吐血了，可是在别人眼里，你还在原地踏步。</p>
+  </div>
+</div>
+
+

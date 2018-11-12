@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/pagination.html' import render_pagination %}
+
+{% block title %}搜索{% endblock %}
+{% block content %}
+    <br>
+    <div class="page-header">
+    <h1>{{ q }} {{ results|length }}个结果</h1><br>
+</div>
+
+    <div class="row">
+        <div class="col-sm-8">
+            {% if results %}
+
+                {% for item in results %}
+                     <h3 class="text-primary"><a href="{{ url_for('.show_post',slug=item.title) }}">{{ item.title }}</a></h3>
+                        <p>
+                        {{ item.body|striptags|truncate(200) }}
+                        <small><a href="{{ url_for('.show_post',slug=item.title) }}">阅读更多</a></small>
+                        </p>
+                    <small>
+                        评论: <a href="{{ url_for('.show_post',slug=item.title) }}#comments">{{ item.comments|length }}</a>&nbsp;&nbsp;
+                        分类: <a href="{{ url_for('.show_category',category_id=item.category.id) }}">{{ item.category.name }}</a>
+                    <span class="float-right">{{ moment(item.timestamp).format('LL') }}</span>
+                     </small>
+                    {% if not loop.last %}
+                        <hr>
+                    {% endif %}
+                {% endfor %}
+                {% else %}
+                    <h5 class="tip">无结果</h5>
+
+            {% endif %}
+        </div>
+
+        <div class="col-sm-4 sidebar">
+            {% include "_sidebar.html" %}
+
+        </div>
+
+
+    </div>
+    {% if results %}
+        <div class="page-footer">
+               <br>
+    <center>
+    <div class="pagination" align="center">
+{% from 'macros.html' import pager %}
+    {{ pager(pagination) }}
+        </div>
+        </center>
+        </div>
+    {% endif %}
+{% endblock %}

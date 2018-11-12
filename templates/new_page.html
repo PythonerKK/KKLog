@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br>
+    <br>
+
+
+    <div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">New Post</h5>
+        <p class="card-text">You can publish a new post here.</p>
+        <a href="{{ url_for('admin.new_post') }}" class="btn btn-primary">publish</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">New Category</h5>
+        <p class="card-text">You can make a new category here.</p>
+        <a href="{{ url_for('admin.new_category') }}" class="btn btn-primary">Set up</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

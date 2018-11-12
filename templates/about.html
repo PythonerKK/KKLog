@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}关于{% endblock %}
+{% block content %}
+    <br>
+<div class="jumbotron">
+        <div class="row">
+            <div class="col-md-8">
+                <img src="{{ url_for('static',filename='images/about.jpg') }}" class="rounded img-fluid" alt="">
+            </div>
+            <div class="col-md-4 align-self-center">
+                <h1>KK 's blog</h1>
+                <p>Capture and remember every wonderful moment.</p>
+                <p><a href="#" class="btn btn-primary btn-lg">创建个人博客</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-group">
+  <div class="card">
+    <img class="card-img-top" src="{{ url_for('static',filename='images/card1.jpg') }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Pycharm</h5>
+      <p class="card-text">使用IDE工具Pycharm编写Python程序</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">版本：2018.3</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="{{ url_for('static',filename='images/card2.jpg') }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Flask</h5>
+      <p class="card-text">使用Python Web框架Flask编写网站，Flask拥有众多扩展。</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">版本：3.0.0</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="{{ url_for('static',filename='images/card3.png') }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Jinjia2</h5>
+      <p class="card-text">使用Flask模板Jinjia2编写前台程序。</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">版本：</small>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

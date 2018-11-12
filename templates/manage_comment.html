@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/pagination.html' import render_pagination %}
+{% block content %}
+    <br>
+        <br>
+        {% for message in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{ message[0] }}" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message[1] }}
+    </div>
+    {% endfor %}
+
+
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a href="#" class="nav-link disabled">过滤</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ url_for('admin.manage_comment',filter='all') }}" class="nav-link {% if request.args.get('filter','all')=='all' %}active{% endif %}">全部</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ url_for('admin.manage_comment',filter='unread') }}" class="nav-link {% if request.args.get('filter')=='unread' %}active{% endif %}">未读
+                {% if unread_comments %}<span class="badge badge-success">{{ unread_comments }}</span>{% endif %}</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ url_for('admin.manage_comment',filter='admin') }}" class="nav-link {% if request.args.get('filter')=='admin' %}active{% endif %}">博主评论</a>
+        </li>
+    </ul>
+
+
+    <div class="page-header">
+        <h1>评论
+            <small class="text-muted">{{ pagination.total }}</small>
+        </h1>
+    </div>
+    {% if comments %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>作者</th>
+                    <th>邮箱</th>
+                    <th>内容</th>
+                    <th>是否审核</th>
+                    <th>时间</th>
+                    <th>动作</th>
+                </tr>
+            </thead>
+        {% for comment in comments %}
+        <tr>
+            <td>{{ loop.index+((pagination.page - 1)*20) }}</td>
+            <td>{{ comment.author }}</td>
+            <td>{{ comment.email }}</td>
+            <td>{{ comment.body }}</td>
+            <td>{{ comment.reviewed }}</td>
+            <td>{{ moment(comment.timestamp).format('LL') }}</td>
+            <td><a href="{{ url_for('.approve_comment',comment_id=comment.id) }}" class="btn btn-info btn-sm">审核</a>
+                <a href="#" class="btn btn-info btn-sm">邮箱</a>
+                <form action="{{ url_for('.delete_comment',comment_id=comment.id) }}" method="post" class="inline">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete this comment?');">删除</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </table>
+        <div class="page-footer">{{ render_pagination(pagination) }}</div>
+        {% else %}
+        <div class="tip"><h5>没有评论。</h5></div>
+    {% endif %}
+
+{% endblock %}
