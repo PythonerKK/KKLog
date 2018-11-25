@@ -1,4 +1,4 @@
 # KKLog
 Developed with Flask
 
-![Image text](https://raw.github.com/yourName/repositpry/master/yourprojectName/img-folder/test.jpg)
+![Image text](https://github.com/PythonerKK/KKLog/blob/master/show.png)
