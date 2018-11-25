@@ -4,6 +4,8 @@ Python Flask编写的个人博客
 ```
 $ git clone https://github.com/PythonerKK/KKLog
 $ cd KKLog
+$ virtualenv Venv
+$ cd Venv/Scripts
 $ activate
 $ pip install -r requirements.txt
 ```
