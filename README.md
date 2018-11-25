@@ -1,5 +1,5 @@
 # KKLog
-Developed with Flask
+Python Flask编写的个人博客
 # 安装方法
 ```
 $ git https://github.com/PythonerKK/KKLog
